@@ -1,2 +1,0 @@
-serviceClass: pt.isep.cms.contacts.client.ContactsService
-path: ABDB25D8AC5A10081955AFF891292B23.gwt.rpc
