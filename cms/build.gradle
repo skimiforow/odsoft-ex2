@@ -15,9 +15,9 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 //Script Version
 version = '1.0'
- 
-repositories { 
-	mavenCentral() 
+
+repositories {
+	mavenCentral()
 }
 
 dependencies {
@@ -27,6 +27,13 @@ dependencies {
 
 }
 
+
+javadoc {
+source = sourceSets.main.allJava
+options.overview = "src/main/javadoc/overview.html" // relative to source root
+options.addStringOption("sourcepath", "/Users/skimiforow/Documents/Mestrado/ODSOFT/Ex2/odsoft-ex2/cms/src/main/java")
+}
+
 // If we woant to use the default ant build inside gradle
 // ant.importBuild "build.xml"
 
@@ -34,16 +41,16 @@ putnami{
 
 	module 'pt.isep.cms.Showcase'
 	//module 'com.google.gwt.sample.contacts.Contacts'
-	
+
 	/** add gwt nature on eclipse project. require apply plugin: 'eclipse' to work. default : false*/
 	googlePluginEclipse = true
-	
+
 	gwtVersion='2.8.1'
-	
+
 	compile {
 		sourceLevel = '1.8'
 	}
-	
+
 	jetty {
         /** enable debugging. */
         debugJava = true
@@ -66,9 +73,9 @@ jacocoTestReport {
 // Notice that it only includes data about the server code sice Jaccoco is not able to get data about cliente code that is transpiled to javascript
 task jacocoIntegrationReport(type: org.gradle.testing.jacoco.tasks.JacocoReport) {
 	sourceSets sourceSets.main
-	
+
     executionData = files("${buildDir}/jacoco/integrationTest.exec")
-    
+
     reports {
         html.enabled = true
         xml.enabled = false
@@ -78,23 +85,19 @@ task jacocoIntegrationReport(type: org.gradle.testing.jacoco.tasks.JacocoReport)
 
 // Integration Tests
 task integrationTest(type: Test) {
-	filter { 
+	filter {
 		//all GWT unit tests, by naming convention
       	includeTestsMatching "*GWTTest*"
-	}    
-    jacoco { 
+	}
+    jacoco {
     		append = true
     		enabled = true
     		//classDumpFile = file("${buildDir}/jacoco/classpathdumps")
-    		
-    		excludes = ["com/steadystate/**"] 
+
+    		excludes = ["com/steadystate/**"]
     }
     // These Properties are required to run gwt integration tests
     systemProperties['gwt.args'] = "-devMode -logLevel WARN -war www-test"
-}
-
-task wrapper(type: Wrapper) {
-    gradleVersion = '2.0'
 }
 
 tasks.withType(Test) {
@@ -102,14 +105,14 @@ tasks.withType(Test) {
 }
 
 // Unit Tests
-test { 
-	filter { 
+test {
+	filter {
 		//all JRE unit tests, by naming convention
       	includeTestsMatching "*JRETest*"
 	}
-    jacoco { 
+    jacoco {
     		append = true
     		enabled = true
   		//classDumpFile = file("${buildDir}/jacoco/classpathdumps")
-    }	
+    }
 }
