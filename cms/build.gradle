@@ -38,9 +38,28 @@ dependencies {
 
 javadoc {
 source = sourceSets.main.allJava
-options.addStringOption('sourcepath', project.plantuml.sourcePath)
-options.docFilesSubDirs = true
+options.overview = "src/main/javadoc/overview.html" // relative to source root
+
+doLast {
+  copy {
+    from "src/main/java"
+    into "$buildDir/docs/javadoc"
+    includes = ['**/doc-files/']
+  }
 }
+}
+
+task renderPlantUml(type: RenderPlantUmlTask) {
+}
+
+task copyPNG(type: Copy) {
+    from 'build/puml/com/google/gwt/'
+    include '*.png'
+    into 'build/docs/javadoc/com/google/gwt/'
+}
+
+javadoc.dependsOn copyPNG
+copyPNG.dependsOn renderPlantUml
 
 // If we woant to use the default ant build inside gradle
 // ant.importBuild "build.xml"
