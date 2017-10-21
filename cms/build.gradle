@@ -1,13 +1,22 @@
-// (ATB)
+
+buildscript {
+    dependencies {
+        classpath 'be.jlr-home.gradle:plantumlPlugin:0.1.+'
+    }
+}
 
 plugins {
     id "fr.putnami.gwt" version "0.4.0"
+
 }
 
 apply plugin: 'war'
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'jacoco'
+apply plugin: 'plantuml'
+
+
 
 //Java version compatibility to use when compiling Java source.
 sourceCompatibility = 1.8
@@ -24,14 +33,13 @@ dependencies {
  	testCompile 'junit:junit:4.12'
  	testCompile 'org.easymock:easymock:2.5.2'
 	testCompile 'com.google.gwt:gwt-dev:2.8.1'
-
 }
 
 
 javadoc {
 source = sourceSets.main.allJava
-options.overview = "src/main/javadoc/overview.html" // relative to source root
-options.addStringOption("sourcepath", "/Users/skimiforow/Documents/Mestrado/ODSOFT/Ex2/odsoft-ex2/cms/src/main/java")
+options.addStringOption('sourcepath', project.plantuml.sourcePath)
+options.docFilesSubDirs = true
 }
 
 // If we woant to use the default ant build inside gradle
@@ -41,7 +49,6 @@ putnami{
 
 	module 'pt.isep.cms.Showcase'
 	//module 'com.google.gwt.sample.contacts.Contacts'
-
 	/** add gwt nature on eclipse project. require apply plugin: 'eclipse' to work. default : false*/
 	googlePluginEclipse = true
 
@@ -60,6 +67,7 @@ putnami{
         debugSuspend = false
     }
 }
+
 
 // Jacoco
 jacocoTestReport {
