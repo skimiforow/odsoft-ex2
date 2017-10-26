@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="pt.isep.cms.contacts.ExampleJRETest" tests="1" skipped="0" failures="0" errors="0" timestamp="2017-10-22T18:07:56" hostname="Sergios-MBP" time="0.077">
+  <properties/>
+  <testcase name="testContactSort" classname="pt.isep.cms.contacts.ExampleJRETest" time="0.077"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

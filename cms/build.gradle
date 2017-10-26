@@ -133,6 +133,8 @@ tasks.withType(Test) {
 
 // Unit Tests
 test {
+outputs.upToDateWhen { false }
+
 	filter {
 		//all JRE unit tests, by naming convention
       	includeTestsMatching "*JRETest*"
