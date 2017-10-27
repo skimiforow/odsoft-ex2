@@ -124,7 +124,7 @@ task integrationTest(type: Test) {
     		excludes = ["com/steadystate/**"]
     }
     // These Properties are required to run gwt integration tests
-    systemProperties['gwt.args'] = "-devMode -logLevel WARN -war www-test"
+    systemProperties['gwt.args'] = "-devMode -logLevel WARN -war www-test -port 1234"
 }
 
 tasks.withType(Test) {

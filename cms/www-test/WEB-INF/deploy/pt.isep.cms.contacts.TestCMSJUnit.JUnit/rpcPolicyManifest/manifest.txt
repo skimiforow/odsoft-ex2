@@ -1,0 +1,2 @@
+# Module pt.isep.cms.contacts.TestCMSJUnit.JUnit
+# RPC service class, partial path of RPC policy file
